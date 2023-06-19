@@ -4,7 +4,7 @@ var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz".split("");
 var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "!@#$%&*".split("");
-console.log(uppercaseLetters, lowercaseLetters, specialCharacters, numbers)
+
 
 // Write password to the #password input
 function writePassword() {
@@ -17,10 +17,8 @@ function writePassword() {
 
 function generatePassword () {
   var promptReturn = prompt("What length do you want your password");
-  //console.log(promptReturn, typeof promptReturn);
   var parsedInteger = parseInt(promptReturn);
-  //console.log(parseInt(promptReturn), typeof parseInt(promptReturn));
-
+  
   // check that parsedInteger is a number
   if (isNaN(parsedInteger)) {
     alert("Hey please enter a number.");
@@ -34,13 +32,12 @@ function generatePassword () {
   }
 
   var wantsLowercase = window.confirm ("Do you want lowercase letters?"); 
-  console.log(wantsLowercase, typeof wantsLowercase);
-  
   var wantsUppercase = window.confirm ("Do you want uppercase letters?"); 
   var wantsNumbers = window.confirm ("Do you want numbers?"); 
   var wantsSpecial = window.confirm ("Do you want special characters?"); 
 
   if (wantsLowercase || wantsUppercase || wantsNumbers || wantsSpecial) {
+    
     // since you know what sets of character the user wants
     // you can build a "master" array from the individual arrays
     // you would check IF one of the variables is true, and if so, add that array's characters

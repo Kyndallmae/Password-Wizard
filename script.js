@@ -4,62 +4,64 @@ var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz".split("");
 var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "!@#$%&*".split("");
+var finalArray = [];
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 function generatePassword () {
   var promptReturn = prompt("What length do you want your password");
   var parsedInteger = parseInt(promptReturn);
   
-  // check that parsedInteger is a number
+  // Pulling a parsed integer from user response
   if (isNaN(parsedInteger)) {
     alert("Hey please enter a number.");
     return null;
   }
 
-  // check the size of your number
+  // Password sive prompt
   if(parsedInteger < 8 || parsedInteger > 128) {
     alert('Hey you need to choose between 8 and 128 characters');
     return null;
   }
-
+  // Prompt Variables
   var wantsLowercase = window.confirm ("Do you want lowercase letters?"); 
   var wantsUppercase = window.confirm ("Do you want uppercase letters?"); 
   var wantsNumbers = window.confirm ("Do you want numbers?"); 
   var wantsSpecial = window.confirm ("Do you want special characters?"); 
+  
+  if (wantsLowercase || wantsNumbers || wantsUppercase || wantsSpecial) {
+   if (wantsLowercase) {
+    finalArray = finalArray.concat(lowercaseLetters);
+   }
+   if (wantsUppercase) {
+    finalArray = finalArray.concat(uppercaseLetters);
+   }
+   if (wantsNumbers) {
+    finalArray = finalArray.concat(numbers);
+   }
+   if (wantsSpecial) {
+    finalArray = finalArray.concat(specialCharacters);
+   }
 
-  if (wantsLowercase || wantsUppercase || wantsNumbers || wantsSpecial) {
-    
-    // since you know what sets of character the user wants
-    // you can build a "master" array from the individual arrays
-    // you would check IF one of the variables is true, and if so, add that array's characters
-    // to your "master" array. Repeat this for the remaining variables
-    // After, you're going to have one master array with all hthe possible characters from which to choose
-    // Here is where you will choose a random character, as many times as you need to
-    // reach the length rquested by the user.
-    // Concatenate or combine all the characters together, and then return that as your value
-
-    // return finalPassword
   } else {
     alert("Hey you need to pick at least one option.");
     return null;
   }
+  }
   
-  
-
-
-}
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+
+
 
 
 
